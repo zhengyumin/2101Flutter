@@ -2,142 +2,73 @@
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(
-      MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("第一个Flutter程序"),
-          ),
-          body: Center(
-            child: Text("Hello world",
-              textDirection: TextDirection.ltr,
-              style: TextStyle(
-                  fontSize: 30,
-                  color: Colors.orange
-              ),
-            ),
-          )
-        )
-      )
-  );
-}
-
-/**
- *  Widget:
- *  有状态的Widget: StatefulWidget 在运行过程中有一些状态需要改变
- *  无状态的Widget: StatelessWidget 内容是确定没有状态的改变
- */
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.green,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+        debugShowCheckedModeBanner: false,
+        home: MyHomePage()
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class MyHomePage extends StatelessWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("商品列表"),
+        ),
+        body: MyHomeContent()
+    );
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+class MyHomeContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: <Widget>[
+        MyHomeProductItem("Apple1","Macbook1","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576150388988&di=46ba71c0a11f90536eac752bddbe1379&imgtype=0&src=http%3A%2F%2Fn.sinaimg.cn%2Fsx%2Fcrawl%2Fw300h300%2F20180302%2FeXad-fwnpcnt3056981.jpg"),
+        MyHomeProductItem("Apple2","Macbook2","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1576150390967&di=c1d9ebd44b0988c1dfc2ccfcd799cb0c&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201812%2F02%2F20181202192022_jkdmo.thumb.700_0.jpg"),
+        MyHomeProductItem("Apple3","Macbook3","http://mmbiz.qpic.cn/mmbiz/PwIlO51l7wuFyoFwAXfqPNETWCibjNACIt6ydN7vw8LeIwT7IjyG3eeribmK4rhibecvNKiaT2qeJRIWXLuKYPiaqtQ/0")
+      ],
+    );
   }
+}
+
+class MyHomeProductItem extends StatelessWidget {
+  final String title;
+  final String desc;
+  final String imageURL;
+
+  final style1 = TextStyle(fontSize: 25,color:Colors.orange);
+  final style2 = TextStyle(fontSize: 20,color:Colors.red);
+
+  MyHomeProductItem(this.title,this.desc,this.imageURL);
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+    return Container(
+      padding:EdgeInsets.all(12),
+      decoration: BoxDecoration(
+          border: Border.all(
+              width: 5,//设置边宽宽度
+              color: Colors.black12
+          )
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(title, style: style1),
+          SizedBox(height: 8),
+          Text(desc, style: style2),
+          SizedBox(height: 8),
+          Image.network(imageURL)
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

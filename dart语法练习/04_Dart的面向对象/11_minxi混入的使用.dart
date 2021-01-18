@@ -32,8 +32,8 @@ class SuperMan extends Animal with Runner, Flyer {
     // TODO: implement eating
     super.eating();
   } 
-  void running() {
-    print("SuperMan running");
-  }
+  // void running() {
+  //   print("SuperMan running");
+  // }
 }
 
