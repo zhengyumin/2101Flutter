@@ -49,6 +49,7 @@ class MyHomeProductItem extends StatelessWidget {
 
   MyHomeProductItem(this.title,this.desc,this.imageURL);
 
+  // 抽象类查看子类快捷键 command + alt + B
   @override
   Widget build(BuildContext context) {
     return Container(
