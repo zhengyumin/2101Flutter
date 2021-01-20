@@ -21,10 +21,10 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("基础Widget"),
-      ),
-      body: MyHomeContent()
+        appBar: AppBar(
+          title: Text("基础Widget"),
+        ),
+        body: MyHomeContent()
     );
   }
 }
@@ -42,7 +42,7 @@ class _MyHomeContentState extends State<MyHomeContent> {
       // 1、在Flutter项目中创建一个文件夹，存储图片
       // 2、在pubspec.yaml中进行配置
       // 3、使用图片
-      image: AssetImage("assets/images/wisdomSite_banner.png")
+        image: AssetImage("assets/images/wisdomSite_banner.png")
     );
   }
 }
@@ -61,12 +61,12 @@ class ImageDemo extends StatelessWidget {
     return Image(
       // color: Colors.green,
       // colorBlendMode: BlendMode.colorBurn,
-      image:NetworkImage(imageUrl),
-      width: 300,
-      height: 300,
-      fit: BoxFit.contain,
-      // repeat: ImageRepeat.repeatY,
-      alignment: Alignment(-1,-0.5)
+        image:NetworkImage(imageUrl),
+        width: 300,
+        height: 300,
+        fit: BoxFit.contain,
+        // repeat: ImageRepeat.repeatY,
+        alignment: Alignment(-1,-0.5)
     );
   }
 }
