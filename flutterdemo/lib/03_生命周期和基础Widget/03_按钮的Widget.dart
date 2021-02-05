@@ -47,7 +47,7 @@ class _MyHomeContentState extends State<MyHomeContent> {
         textColor: Colors.red,
         color: Colors.orange,
         onPressed: () =>print("RaisedButton_click")
-    ),;
+    );
   }
 }
 
