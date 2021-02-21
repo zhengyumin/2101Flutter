@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
+        // debugShowCheckedModeBanner: false,
         home: MyHomePage()
     );
   }
@@ -24,7 +24,12 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("基础Widget"),
       ),
-      body: MyHomeContent()
+      body: MyHomeContent(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => print("floatingActionButton click"),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
@@ -39,48 +44,124 @@ class _MyHomeContentState extends State<MyHomeContent> {
   @override
   Widget build(BuildContext context) {
 
-    return Column(
-      children: <Widget>[
-        PaddingDemo(),
-        Text("你好啊李银河",style: TextStyle(fontSize: 30,backgroundColor:Colors.red)),
-        Text("你好啊李银河",style: TextStyle(fontSize: 30,backgroundColor:Colors.red)),
-      ],
+    // Row/Column: 继承自Flex
+    // Flex: CSS Flex布局
+    // Axis.vertical: Column
+    // Axis.horizontal: Row
+    
+    return Container(
+      height: 300,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.baseline,
+        mainAxisSize: MainAxisSize.max,
+        textBaseline: TextBaseline.ideographic,
+        children: <Widget>[
+          Flexible(
+              fit: FlexFit.tight,
+              flex: 1,
+              child: Container(width: 80,height: 60, color: Colors.red)
+          ),
+          Flexible(
+              fit: FlexFit.tight,
+              flex: 5,
+              child:  Container(width: 120,height: 100, color: Colors.green),
+          ),
 
+          Container(width: 90,height: 80, color: Colors.blue),
+          Container(width: 50,height: 120, color: Colors.orange),
+        ],
+      ),
     );
   }
 }
 
-class PaddingDemo extends StatelessWidget {
-  const PaddingDemo({
+
+class ButtonRowDemo extends StatelessWidget {
+  const ButtonRowDemo({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-       padding: const EdgeInsets.only(
-         bottom: 10
-       ),
-       child: Text(
-         "你好啊李银河",
-         style: TextStyle(fontSize: 30,backgroundColor:Colors.red),
-        )
-     );
+    return RaisedButton(
+        color:Colors.red, 
+        child: Row(
+          mainAxisSize:MainAxisSize.min,
+          children: <Widget>[
+            Icon(Icons.bug_report),
+            Text("bug报告")
+          ],
+        ),
+      onPressed: () => print("按钮被点击"),
+    );
   }
 }
 
-class AlignDemo extends StatelessWidget {
-  const AlignDemo({
+
+class ColumnDemo extends StatelessWidget {
+  const ColumnDemo({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment(1,1),
-      // widthFactor: 5,
-      // heightFactor: 5,
-      child: Icon(Icons.pets, size:50),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      mainAxisSize: MainAxisSize.max,
+      verticalDirection: VerticalDirection.down,
+      textBaseline: TextBaseline.ideographic,
+      children: <Widget>[
+        Container(width: 80,height: 60, color: Colors.red,child: Text("Hellxo",style: TextStyle(fontSize: 20))),
+        Container(width: 120,height: 100, color: Colors.green,child: Text("Woxrld",style: TextStyle(fontSize: 30))),
+        Container(width: 90,height: 80, color: Colors.blue,child: Text("abxc",style: TextStyle(fontSize: 12))),
+        Container(width: 50,height: 120, color: Colors.orange,child: Text("cxba",style: TextStyle(fontSize: 40))),
+      ],
+    );
+  }
+}
+/**
+ *  Row特点:
+ *  - 水平方向尽可能占据比较大的空间
+ *  - 水平方向也希望包裹内容，那么设置mainAxisSize = min
+ *  - 垂直方向包裹内容
+ *  MainAxisAlignment:
+ *  - start:主轴开始位置挨个摆放元素
+ *  - end:主轴结束位置挨个摆放元素
+ *  - center:主轴中心点对齐
+ *  - spaceBetween: 左右两边的间距为0，其他元素之间平分间距
+ *  - spaceAround: 左右两边的间距是其他元素之间间距的一半
+ *  - spaceEvenly: 所有的间距平分空间
+ *  CrossAxisAlignment:
+ *  - start: 交叉轴开始位置挨个摆放元素
+ *  - end: 交叉轴结束位置挨个摆放元素
+ *  - center: 交叉轴中心点对齐
+ *  - baseline: 基线对齐(必须有文本的时候才起效果)
+ *  - stretch: 将所有的子Widget交叉轴的高度拉伸到最大
+ */
+
+class RowDemo extends StatelessWidget {
+  const RowDemo({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.baseline,
+          mainAxisSize: MainAxisSize.max,
+          textBaseline: TextBaseline.ideographic,
+          children: <Widget>[
+            Container(width: 80,height: 60, color: Colors.red,child: Text("Hellxo",style: TextStyle(fontSize: 20))),
+            Container(width: 120,height: 100, color: Colors.green,child: Text("Woxrld",style: TextStyle(fontSize: 30))),
+            Container(width: 90,height: 80, color: Colors.blue,child: Text("abxc",style: TextStyle(fontSize: 12))),
+            Container(width: 50,height: 120, color: Colors.orange,child: Text("cxba",style: TextStyle(fontSize: 40))),
+          ],
+      ),
     );
   }
 }
