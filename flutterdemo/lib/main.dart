@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/painting/border_radius.dart';
+import 'dart:math';
 
 void main() => runApp(MyApp());
 
@@ -12,18 +11,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         // debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme:  ThemeData(
-          primarySwatch:Colors.blue, splashColor: Colors.transparent
-        ),
-        home: MyHomePage()
-    );
+        theme: ThemeData(
+            primarySwatch: Colors.blue, splashColor: Colors.transparent),
+        home: MyHomePage());
   }
 }
 
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(//脚手架
       appBar: AppBar(
         title: Text("基础Widget"),
       ),
@@ -40,7 +37,40 @@ class MyHomeContent extends StatefulWidget {
 class _MyHomeContentState extends State<MyHomeContent> {
   @override
   Widget build(BuildContext context) {
+    return CustomScrollViewDemo();
+  }
+}
 
-    return  Row();
+class CustomScrollViewDemo extends StatelessWidget {
+  const CustomScrollViewDemo({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverSafeArea(
+          sliver: SliverPadding(
+            padding: EdgeInsets.all(8),
+            sliver: SliverGrid(
+              delegate: SliverChildBuilderDelegate(
+                      (BuildContext context, int index){
+                    return Container(
+                        color: Color.fromARGB(255, Random().nextInt(256),Random().nextInt(256), Random().nextInt(256))
+                    );
+                  },
+                  childCount:20
+              ),
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 150,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  childAspectRatio: 1),
+            ),
+          ),
+        )
+      ],
+    );
   }
 }
