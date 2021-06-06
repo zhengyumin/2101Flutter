@@ -8,18 +8,18 @@ main(List<String> args) {
 
   //级联运算符
   var p2 = Person()
-        ..name = "why"
-        ..eat()
-        ..run();
+    ..name = "why"
+    ..eat()
+    ..run();
 }
 
-class Person{
+class Person {
   String name;
-  void run(){
+  void run() {
     print("running");
-   }
+  }
 
-   void eat(){
-     print("eating");
-   }
+  void eat() {
+    print("eating");
+  }
 }

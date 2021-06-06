@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class HYStarRating extends StatefulWidget {
+class ZYStarRating extends StatefulWidget {
   final double rating;
   final double maxRating;
   final Widget unselectedImage;
@@ -11,7 +11,7 @@ class HYStarRating extends StatefulWidget {
   final Color unselectedColor;
   final Color selectedColor;
 
-  HYStarRating({
+  ZYStarRating({
     @required this.rating,
     this.maxRating = 10,
     this.size = 30,
@@ -33,7 +33,7 @@ class HYStarRating extends StatefulWidget {
   _HYStarRatingState createState() => _HYStarRatingState();
 }
 
-class _HYStarRatingState extends State<HYStarRating> {
+class _HYStarRatingState extends State<ZYStarRating> {
   @override
   Widget build(BuildContext context) {
     return Container(
